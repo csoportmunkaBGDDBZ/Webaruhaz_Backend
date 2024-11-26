@@ -46,7 +46,7 @@ class BasketController extends Controller
         // Tömeges beszúrás az adatbázisba
         Basket::insert($baskets);
 
-        return response()->json(['success' => 'Baskets created successfully'], 201);
+        return response()->json(['success' => 'Basket filled with products'],200);
     }
 
     /**
@@ -75,6 +75,10 @@ class BasketController extends Controller
     public function destroy(string $product_id)
     {
         Basket::show($product_id)->delete();
+    }
+    public function basketData(){
+        return with(Basket::with('productData')
+            ->get());
     }
 
 }

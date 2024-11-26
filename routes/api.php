@@ -15,7 +15,7 @@ Route::post("/product", [ProductController::class, 'store']);
 Route::put("/product/{product_id}", [ProductController::class, 'update']);
 Route::delete("/product/{product_id}", [ProductController::class, 'destroy']);
 
-Route::get("/basket", [BasketController::class, 'index']);
+Route::get("/basket-with-data", [BasketController::class, 'basketData']);
 Route::post("/basket", [BasketController::class, 'store']);
 
 //Dominik kérései

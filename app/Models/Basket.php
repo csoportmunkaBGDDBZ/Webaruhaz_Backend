@@ -19,4 +19,7 @@ class Basket extends Model
             ->where('product_id', '=', $this->getAttribute('product_id'));
         return $query;
 }
+public function productData(){
+    return $this->belongsTo(Product::class, 'product_id','product_id');
+}
 }
