@@ -15,4 +15,10 @@ Route::post("/product", [ProductController::class, 'store']);
 Route::put("/product/{product_id}", [ProductController::class, 'update']);
 Route::delete("/product/{product_id}", [ProductController::class, 'destroy']);
 
-//Route::get("/basket", [BasketController::class, 'index']);
+Route::get("/basket", [BasketController::class, 'index']);
+Route::post("/basket", [BasketController::class, 'store']);
+
+//Dominik kérései
+Route::get("/categories", [ProductController::class, 'categories']);
+
+

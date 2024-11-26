@@ -14,10 +14,6 @@ class BasketFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $fillable = [
-        'product_id',
-        'amount'
-    ];
     public function definition(): array
     {
         return [
