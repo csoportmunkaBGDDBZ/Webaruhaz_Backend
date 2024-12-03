@@ -12,8 +12,8 @@ Route::get('/user', function (Request $request) {
 Route::get("/products", [ProductController::class, 'index']);
 Route::get("/product/{product_id}", [ProductController::class, 'show']);
 Route::post("/product", [ProductController::class, 'store']);
-Route::put("/product/{product_id}", [ProductController::class, 'update']);
-Route::delete("/product/{product_id}", [ProductController::class, 'destroy']);
+Route::put("/productEdit/{product_id}", [ProductController::class, 'update']);
+Route::delete("/productDelete/{product_id}", [ProductController::class, 'destroy']);
 
 Route::get("/basket-with-data", [BasketController::class, 'basketData']);
 Route::post("/fill-basket", [BasketController::class, 'store']);
