@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('baskets', function (Blueprint $table) {
             $table->primary('product_id');
             $table->foreignId('product_id')->references('id')->on('products'); 
-            $table->unsignedBigInteger('product_id')->nullable()->change();
+            //$table->unsignedBigInteger('product_id')->nullable()->change();
             $table->integer('amount');
             $table->timestamps();
         });

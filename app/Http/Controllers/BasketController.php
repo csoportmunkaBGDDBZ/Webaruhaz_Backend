@@ -32,23 +32,29 @@ class BasketController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        // A rekordok beszúrása
-        $baskets = [];
         foreach ($data as $item) {
-            $baskets[] = [
-                'product_id' => $item['product_id'],
-                'amount' => $item['amount'],
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+            // Ellenőrizzük, hogy létezik-e a termék a baskets táblában
+            $basket = Basket::where('product_id', $item['product_id'])->first();
+
+            if ($basket) {
+                // Ha létezik, frissítjük az amount mezőt
+                $basket->update([
+                    'amount' => $item['amount'],
+                    'updated_at' => now(),
+                ]);
+            } else {
+                // Ha nem létezik, új rekordot hozunk létre
+                Basket::create([
+                    'product_id' => $item['product_id'],
+                    'amount' => $item['amount'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
         }
 
-        // Tömeges beszúrás az adatbázisba
-        Basket::insert($baskets);
-
-        return response()->json(['success' => 'Basket filled with products'],200);
+        return response()->json(['success' => 'Basket updated with products'], 200);
     }
-
     /**
      * Display the specified resource.
      */
@@ -76,9 +82,9 @@ class BasketController extends Controller
     {
         Basket::show($product_id)->delete();
     }
-    public function basketData(){
+    public function basketData()
+    {
         return with(Basket::with('productData')
             ->get());
     }
-
 }
