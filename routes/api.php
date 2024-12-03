@@ -16,7 +16,7 @@ Route::put("/product/{product_id}", [ProductController::class, 'update']);
 Route::delete("/product/{product_id}", [ProductController::class, 'destroy']);
 
 Route::get("/basket-with-data", [BasketController::class, 'basketData']);
-Route::post("/basket", [BasketController::class, 'store']);
+Route::post("/fill-basket", [BasketController::class, 'store']);
 
 //Dominik kérései
 Route::get("/categories", [ProductController::class, 'categories']);

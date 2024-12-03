@@ -24,7 +24,7 @@ class BasketController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-            '*.product_id' => 'required|integer|exists:products,product_id',
+            '*.product_id' => 'required|integer|exists:products,id',
             '*.amount' => 'required|integer|min:1',
         ]);
 
